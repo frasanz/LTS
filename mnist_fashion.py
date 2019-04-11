@@ -1,6 +1,7 @@
 import tensorflow as tf
 import numpy as np
 import matplotlib.pyplot as plt
+from keras.utils import plot_model
 
 fashion_mnist = tf.keras.datasets.fashion_mnist
 (train_images, trains_labels), (test_images,test_labels) = fashion_mnist.load_data()
@@ -89,5 +90,4 @@ for i in range(num_images):
     plt.subplot(num_rows,2*num_cols,2*i+2)
     plot_value_array(i,predictions,test_labels)
 plt.show()
-
-    
+plot_model(model, to_file='model.png')
