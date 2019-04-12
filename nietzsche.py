@@ -5,12 +5,14 @@
 #For other authors, between 1.000.000 - 1000.000 characters
 
 from __future__ import print_function
+import tensorflow as tf
 from keras.callbacks import LambdaCallback
 from keras.models import Sequential
 from keras.layers import Dense
 from keras.layers import LSTM
 from keras.optimizers import RMSprop
 from keras.utils.data_utils import get_file
+from tensorflow.keras.callbacks import EarlyStopping
 import numpy as np
 import random
 import sys
@@ -57,11 +59,15 @@ for i, sentence in enumerate(sentences):
 
 #build the model
 print('Build model...')
-model = Sequential()
-model.add(LSTM(128,input_shape=(maxlen, len(chars))))
-model.add(Dense(len(chars), activation='softmax'))
-optimizer = RMSprop(lr=0.01)
-model.compile(loss='categorical_crossentropy',optimizer=optimizer)
+#model = Sequential()
+#model.add(LSTM(128,input_shape=(maxlen, len(chars))))
+#model.add(Dense(len(chars), activation='softmax'))
+#optimizer = RMSprop(lr=0.01)
+model = tf.keras.Sequential([
+    tf.keras.layers.LSTM(128,input_shape=(maxlen, len(chars))),
+    tf.keras.layers.Dense(len(chars), activation='softmax')])
+#optimizer=RMSprop(lr=0.01)
+model.compile(loss='categorical_crossentropy',optimizer='adam')
 
 def sample(preds, temperature=1.0):
     # helper function to sample an idex from a probability array
