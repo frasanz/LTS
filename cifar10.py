@@ -8,6 +8,8 @@ cifar10 = tf.keras.datasets.cifar10
 (train_images,train_labels), (test_images,test_labels) = cifar10.load_data()
 train_images=train_images/255.0
 print(train_labels)
+print('train shape:', train_images.shape)
+
 
 #Show several pictures
 plt.figure(figsize=(10,10))
@@ -22,11 +24,12 @@ for i in range(25):
 
 #Create the model
 model  = tf.keras.Sequential([
-    tf.keras.layers.Flatten(input_shape=(32,32,3)),
+    tf.keras.layers.Conv2D(32,(32,3),padding = 'same',input_shape=train_images[1:],activation=tf.nn.relu),
     tf.keras.layers.Dense(512,activation=tf.nn.relu),
     tf.keras.layers.Dense(128,activation=tf.nn.relu),
     tf.keras.layers.Dense(128,activation=tf.nn.relu),
     tf.keras.layers.Dense(128,activation=tf.nn.relu),
+    tf.keras.layers.Flatten(()),
     tf.keras.layers.Dense(10,activation=tf.nn.softmax)])
 
 #Compile the model
