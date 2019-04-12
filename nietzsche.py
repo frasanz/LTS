@@ -77,6 +77,13 @@ def sample(preds, temperature=1.0):
     preds = exp_preds / np.sum(exp_preds)
     probas = np.random.multinomial(1,preds,1)
     return np.argmax(probas)
+def on_train_batch_begin(epoch,_):
+    print('btch')
+def on_train_batch_end(epoch,_):
+    print('btch')
+
+
+
 
 def on_epoch_end(epoch, _):
     # Function invoked at end of each epoch. Prints generated text.
@@ -108,6 +115,8 @@ def on_epoch_end(epoch, _):
             sys.stdout.flush()
         print()
 
-print_callback = LambdaCallback(on_epoch_end= on_epoch_end)
+print_callback = LambdaCallback(on_train_batch_begin=on_train_batch_begin,
+        on_train_batch_end = on_train_batch_end,
+        on_epoch_end= on_epoch_end)
 
 model.fit(x,y, batch_size=128, epochs=60, callbacks=[print_callback])
