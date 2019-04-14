@@ -18,9 +18,12 @@ import random
 import sys
 import io
 
+#path = get_file(
+#        'nietzche.txt',
+#        origin='https://s3.amazonaws.com/text-datasets/nietzsche.txt')
 path = get_file(
-        'nietzche.txt',
-        origin='https://s3.amazonaws.com/text-datasets/nietzsche.txt')
+        'el_quijote.txt',
+        origin='https://gist.githubusercontent.com/jsdario/6d6c69398cb0c73111e49f1218960f79/raw/8d4fc4548d437e2a7203a5aeeace5477f598827d/el_quijote.txt')
 with io.open(path, encoding='utf-8') as f:
     text = f.read().lower()
 print('corpus length:', len(text))
