@@ -69,8 +69,8 @@ print('Build model...')
 model = tf.keras.Sequential([
     tf.keras.layers.LSTM(128,input_shape=(maxlen, len(chars))),
     tf.keras.layers.Dense(len(chars), activation='softmax')])
-#optimizer=RMSprop(lr=0.01)
-model.compile(loss='categorical_crossentropy',optimizer='adam')
+optimizer2=tf.keras.optimizers.RMSprop(lr=0.01)
+model.compile(loss='categorical_crossentropy',optimizer=optimizer2)
 
 def sample(preds, temperature=1.0):
     # helper function to sample an idex from a probability array
