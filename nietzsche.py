@@ -122,4 +122,4 @@ print_callback = LambdaCallback(on_train_batch_begin=on_train_batch_begin,
         on_train_batch_end = on_train_batch_end,
         on_epoch_end= on_epoch_end)
 
-model.fit(x,y, batch_size=128, epochs=60, callbacks=[print_callback])
+model.fit(x,y, batch_size=128, epochs=6, callbacks=[print_callback])
