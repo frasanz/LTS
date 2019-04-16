@@ -69,8 +69,8 @@ print('Build model...')
 model = tf.keras.Sequential([
     tf.keras.layers.LSTM(128,input_shape=(maxlen, len(chars))),
     tf.keras.layers.Dense(len(chars), activation='softmax')])
-optimizer2=tf.keras.optimizers.RMSprop(lr=0.01)
-model.compile(loss='categorical_crossentropy',optimizer=optimizer2)
+optimizer2=tf.keras.optimizers.RMSprop(lr=0.0005)
+model.compile(loss='categorical_crossentropy',optimizer=optimizer2,metrics=['accuracy'])
 
 def sample(preds, temperature=1.0):
     # helper function to sample an idex from a probability array
@@ -122,4 +122,4 @@ print_callback = LambdaCallback(on_train_batch_begin=on_train_batch_begin,
         on_train_batch_end = on_train_batch_end,
         on_epoch_end= on_epoch_end)
 
-model.fit(x,y, batch_size=128, epochs=6, callbacks=[print_callback])
+model.fit(x,y, batch_size=128, epochs=60, callbacks=[print_callback])
