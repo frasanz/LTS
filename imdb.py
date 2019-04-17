@@ -51,10 +51,10 @@ model.compile(optimizer = optimizers.RMSprop(lr=0.001), loss=losses.binary_cross
 
 # Get a slice
 x_val = x_train[:10000]
-partial_x_train = xtrain[10000:]
+partial_x_train = x_train[10000:]
 
 y_val = y_train[:10000]
-partial_y_val = y_train[10000:]
+partial_y_train = y_train[10000:]
 
 history = model.fit(partial_x_train, partial_y_train, epochs = 20, batch_size=512, validation_data = (x_val, y_val))
 
