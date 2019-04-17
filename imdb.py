@@ -4,6 +4,7 @@ from keras import models
 from keras import layers
 from keras import optimizers
 from keras import losses
+from keras import metrics
 import numpy as np
 
 def vectorize_sequences(sequences, dimension=10000):
