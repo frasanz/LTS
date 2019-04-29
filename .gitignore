@@ -3,4 +3,6 @@ nohup.out
 *.jpg
 *.jpeg
 *.csv
+*.tar.gz
+*.txt
 
