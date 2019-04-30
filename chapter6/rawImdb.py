@@ -7,6 +7,9 @@ from keras.models import Sequential
 from keras.layers import Embedding, Flatten, Dense
 import numpy as np
 
+# To draw models
+from keras.utils.vis_utils import plot_model
+
 imdb_dir  = './aclImdb'
 train_dir = os.path.join(imdb_dir, 'train')
 
@@ -91,12 +94,12 @@ model.add(Dense(1, activation = 'sigmoid'))
 # Loading the matri of pre-trained word wmbeddings into the Embedding layer
 model.layers[0].set_weights([embedding_matrix])
 model.layers[0].trainable = False
-
 model.summary()
+plot_model(model, to_file='model_plot.png', show_shapes=True, show_layer_names=True)
 
 # Training and evaludation
-model.compile(optimizer = 'rmsprop', loss='binary_crossentropy', metrics=['acc'])
-history = model.fit(x_train, y_train, 
-        epochs=10, batch_size=32, validation_data=(x_val, y_val))
-model.save_weights('pre_trained_glove_model.h5')
+#model.compile(optimizer = 'rmsprop', loss='binary_crossentropy', metrics=['acc'])
+#history = model.fit(x_train, y_train, 
+#        epochs=10, batch_size=32, validation_data=(x_val, y_val))
+#model.save_weights('pre_trained_glove_model.h5')
 
